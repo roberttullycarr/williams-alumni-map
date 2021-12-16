@@ -21,20 +21,26 @@ export async function getAlumniData() {
       // return the data for each video (or whatever each row is in your sheet)
     if (row !== null) {
         return {
-        color: row.color,
-        name: row.name,
-        class: row.class,
-        employer: row.employer,
-        type: row.type,
-        title: row.title,
-        lat: row.latitude,
-        long: row.longitude
+          type: "Feature",
+          properties: {
+            color: row.color,
+            name: row.name,
+            class: row.class,
+            employer: row.employer,
+            type: row.type,
+            title: row.title,
+            cluster: false,
+          },
+          geometry: {
+            type: 'Point',
+            coordinates: [row.longitude, row.latitude]
+          },
       };
     }
     });
     const alumniJSON = JSON.parse(JSON.stringify(alumni));
 
-    return alumniJSON.filter(obj => obj.hasOwnProperty('long'));
+    return alumniJSON.filter(point => point.geometry.coordinates[0] !== null  || undefined || '');
   } catch (error) {
     //   log any errors to the console
     console.log(error);
