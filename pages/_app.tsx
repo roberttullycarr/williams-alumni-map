@@ -11,6 +11,18 @@ const GlobalStyle = createGlobalStyle`
     font-style: normal;
     padding: 0;
     margin: 0;
+    
+    .mapboxgl-popup-content {
+      border: 1px solid black;
+      padding: 0;
+      border-radius: 0 !important;
+    }
+    
+    .mapboxgl-popup-close-button {
+      margin-right: 4px;
+    }
+    
+
   }
   
   body {

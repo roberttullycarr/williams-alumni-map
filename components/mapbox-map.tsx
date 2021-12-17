@@ -1,9 +1,8 @@
 import * as React from "react";
-import ReactMapGL, { Marker, Popup } from 'react-map-gl';
-import getCenter from 'geolib/es/getCenter';
-import { v4 as uuidv4 } from 'uuid';
-import styled from 'styled-components';
-import { useRef } from 'react';
+import ReactMapGL from 'react-map-gl';
+import { useRef, useState } from 'react';
+import PopUp from './popup';
+import Markers from './Markers';
 
 interface Properties {
   color: string,
@@ -37,34 +36,19 @@ interface Props {
 
 const accessToken = process.env.MAPBOX_TOKEN;
 
-const MarkerMain = styled.div`
-  border: 1px solid ${props => props.color};
-  background-color: ${props => props.color};
-  border-radius: 50%;
-  width: 10px;
-  height: 10px;
-  cursor: pointer;
-`
 
 const MapboxMap: React.FC<Props> = ({ alumniData, filterOptions }) => {
-  const mapRef = useRef();
+  const mapRef: any = useRef();
+  const [popup, setPopup] = useState<any>(null);
 
-  // const coordinates = alumniData.map(point => {
-  //   if (point.geometry.coordinates[1] !== undefined) {
-  //     return {latitude: parseFloat(point.geometry.coordinates[1]), longitude: parseFloat(point.geometry.coordinates[0])}
-  //   }
-  // });
-  //
-  // // @ts-ignore
-  // const center: any = getCenter(coordinates);
+  const points = alumniData.filter(x => !filterOptions.years.includes(parseFloat(x.properties.class)) && !filterOptions.types.includes(x.properties.type));
 
-  const [viewport, setViewport] = React.useState<object>({
+  const [viewport, setViewport] = React.useState<object> ({
     latitude: 20.775608026033595,
     longitude: 13.326139455488722,
     zoom: 1.4139073733575152
   });
 
-  //
   return (
     <ReactMapGL
       {...viewport}
@@ -72,16 +56,10 @@ const MapboxMap: React.FC<Props> = ({ alumniData, filterOptions }) => {
       height="100%"
       onViewportChange={(viewport: React.SetStateAction<object>) => setViewport(viewport)}
       mapboxApiAccessToken={accessToken}
+      ref={mapRef}
     >
-      {alumniData.map(point => {
-        if (!filterOptions.years.includes(parseInt(point.properties.class)) && !filterOptions.types.includes(point.properties.type) && point.properties.class !== '' ) {
-           return (
-            <Marker key={uuidv4()} latitude={parseFloat(point.geometry.coordinates[1])} longitude={parseFloat(point.geometry.coordinates[0])}>
-              <MarkerMain color={point.properties.color}/>
-            </Marker>
-        )
-        }
-      })}
+      <Markers points={points} viewport={viewport} setViewport={setViewport} mapRef={mapRef} setPopup={setPopup}/>
+      {popup && <PopUp popup={popup} setPopup={setPopup} />}
     </ReactMapGL>
   );
 }

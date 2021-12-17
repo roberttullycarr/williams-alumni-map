@@ -7,10 +7,11 @@ import Head from 'next/head';
 import { useState } from 'react';
 import genYears from '../data/years';
 import uniqueCategories from '../data/categories';
+import parseData from '../data/parseData';
 
 
 interface Props {
-  alumni: [];
+  alumniData: [];
 }
 
 interface Years {
@@ -22,10 +23,11 @@ const Title = styled.h1`
 `;
 
 
-const Home: NextPage<Props> = ({alumni}) => {
+const Home: NextPage<Props> = ({alumniData}) => {
   const years: number[] = genYears(1974);
-  const types: string[] = uniqueCategories(alumni);
+  const types: string[] = uniqueCategories(alumniData);
   const [filterOptions, setFilterOptions] = useState<any>({years: [], types: []});
+
 
   return (
     <>
@@ -33,7 +35,7 @@ const Home: NextPage<Props> = ({alumni}) => {
         <link rel="stylesheet" href="https://use.typekit.net/gpn3nrd.css" />
         <title>Alumni Map</title>
       </Head>
-      <MapboxMap alumniData={alumni} filterOptions={filterOptions}/>
+      <MapboxMap alumniData={alumniData} filterOptions={filterOptions}/>
       <Filter years={years} filterOptions={filterOptions}
                         setFilterOptions={setFilterOptions}
                             types={types}/>
@@ -45,10 +47,11 @@ export default Home
 
 export async function getServerSideProps() {
   const alumni = await getAlumniData();
+  const alumniData = parseData(alumni);
 
   return {
     props: {
-      alumni,
+      alumniData,
     },
   };
 }
