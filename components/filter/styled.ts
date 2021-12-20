@@ -13,6 +13,7 @@ export const FilterMain = styled.div`
   :hover {
     cursor: pointer;
   }
+  
 `
 
 export const FilterPopUp = styled.div`
@@ -28,6 +29,10 @@ position: absolute;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
   padding: 2.5% 3%;
+  
+    @media only screen and (max-width: 400px) {
+  width: 100%;
+  }
 `
 
 export const FPUTitle = styled.div`

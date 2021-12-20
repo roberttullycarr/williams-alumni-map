@@ -53,7 +53,6 @@ const Filter: React.FC<Props> = ({ years, types, setFilterOptions }) => {
     setCheckedTypes([]);
   }
 
-console.log(checkedYears);
   return (
     <>
        {!filter ? <ToggleBtn onClick={clickHandler}>Filter</ToggleBtn> : null}
