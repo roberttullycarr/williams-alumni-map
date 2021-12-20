@@ -1,7 +1,7 @@
 import * as React from "react";
-import styled from 'styled-components';
 import { ToggleBtn, FilterMain, FPUTitle, FilterPopUp, FPUMain, FPUSelectMain, CategoryContainer, FPUITitle, FPUInputsWrap, LabelMain, LineItem, FPUBtns, FilterButton } from './styled';
 import { Dispatch, useState } from 'react';
+
 
 interface Props {
   years: number[],
@@ -67,8 +67,8 @@ console.log(checkedYears);
             <CategoryContainer>
               <FPUITitle>GRADUATION YEAR</FPUITitle>
               <FPUInputsWrap>
-                {years.map((year, id) =>
-                      <LabelMain>
+                {years.map((year) =>
+                      <LabelMain key={Math.random()}>
                         <input key={Math.random()} type='checkbox' placeholder='years' value={year}
                                defaultChecked={!checkedYears.includes(year)}
                                onChange={(e) => changeHandler(e, year)}
@@ -82,8 +82,8 @@ console.log(checkedYears);
             <CategoryContainer>
               <FPUITitle>INDUSTRY</FPUITitle>
               <FPUInputsWrap>
-                {types.map((type, id) =>
-                <LabelMain>
+                {types.map((type) =>
+                <LabelMain key={Math.random()}>
                   <input key={Math.random()} type='checkbox' placeholder='industry' value={type}
                          onChange={(e) => changeHandler(e, type)}
                          defaultChecked={!checkedTypes.includes(type)}
