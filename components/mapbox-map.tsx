@@ -35,7 +35,7 @@ interface Props {
 }
 
 // references the mapbox token stored in the next.config.js file. used to render mapbox map
-const accessToken = process.env.MAPBOX_TOKEN;
+const accessToken = `${process.env.NEXT_PUBLIC_MAPBOX_TOKEN}`;
 
 // renders mapbox map
 const MapboxMap: React.FC<Props> = ({ alumniData, filterOptions }) => {

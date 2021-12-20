@@ -1,9 +1,12 @@
+
+
 const { GoogleSpreadsheet } = require("google-spreadsheet");
+
 // credentials you have generated when creating the service account. TIP: DO NOT check this into your Git repo and it to your .gitignore file
 // Create a document object using the ID of the spreadsheet - obtained from its URL.
-const doc = new GoogleSpreadsheet(process.env.SPREADSHEET_ID);
-const CLIENT_EMAIL = process.env.CLIENT_EMAIL;
-const PRIVATE_KEY = process.env.PRIVATE_KEY;
+const doc = new GoogleSpreadsheet(`${process.env.NEXT_PUBLIC_SPREADSHEET_ID}`);
+const CLIENT_EMAIL = `${process.env.NEXT_PUBLIC_CLIENT_EMAIL}`;
+const PRIVATE_KEY = process.env.NEXT_PUBLIC_PRIVATE_KEY;
 
 export async function getAlumniData() {
     try {
