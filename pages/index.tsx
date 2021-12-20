@@ -1,7 +1,6 @@
 import type { NextPage } from 'next'
 import { getAlumniData } from "./api/api";
 import MapboxMap from '../components/mapbox-map';
-import styled from "styled-components";
 import Filter from '../components/filter';
 import Head from 'next/head';
 import { useState } from 'react';
@@ -9,18 +8,29 @@ import genYears from '../data/years';
 import uniqueCategories from '../data/categories';
 import parseData from '../data/parseData';
 
+interface Properties {
+  color: string,
+  name: string,
+  class: string,
+  employer: string,
+  type: string,
+  title: string,
+}
+
+interface Geometry {
+  coordinates: string[],
+  type: string,
+}
+
+type AlumniType = {
+  properties: Properties,
+  geometry: Geometry,
+}
 
 interface Props {
-  alumniData: [];
+  alumniData: AlumniType[];
 }
 
-interface Years {
-  years: () => void,
-}
-
-const Title = styled.h1`
-  color: red;
-`;
 
 // main page component of project. data comes from './api/api.js'
 const Home: NextPage<Props> = ({alumniData}) => {
