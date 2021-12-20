@@ -22,13 +22,17 @@ const Title = styled.h1`
   color: red;
 `;
 
-
+// main page component of project. data comes from './api/api.js'
 const Home: NextPage<Props> = ({alumniData}) => {
+  // generates list of years between 1974 and current year, for use when creating filter checkboxes, as well as for filtering years.
   const years: number[] = genYears(1974);
+  // reduces categories listed in data to only unique ones.  this can be taken out when we have a set number of categories
   const types: string[] = uniqueCategories(alumniData);
+  // lists the years and industries that will be filtered from the map display.   passed down to both the filter and mapbox-map components
   const [filterOptions, setFilterOptions] = useState<any>({years: [], types: []});
 
 
+  // head component in return adds our font to the next.js index.html head
   return (
     <>
       <Head>

@@ -55,7 +55,7 @@ const Employer = styled(Year)`
 margin-top: 1px;
   font-weight: bold;
 `
-
+// renders pop up component
 const PopUp: React.FC<Props> = ({ popup, setPopup }) => {
   return (
       <Popup

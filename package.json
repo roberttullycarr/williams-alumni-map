@@ -8,10 +8,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@svgr/webpack": "^6.1.1",
     "@types/uuid": "^8.3.3",
-    "axios": "^0.24.0",
-    "geolib": "^3.3.3",
     "google-spreadsheet": "^3.2.0",
     "mapbox-gl": "1.12.0",
     "next": "12.0.2",

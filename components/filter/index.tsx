@@ -30,6 +30,7 @@ const Filter: React.FC<Props> = ({ years, types, setFilterOptions }) => {
       } else {
         checkedYears.splice(itemID, 1);
       }
+      console.log(checkedYears);
     } else {
       let itemID = checkedTypes.indexOf(value);
       if (itemID === -1){
@@ -38,6 +39,7 @@ const Filter: React.FC<Props> = ({ years, types, setFilterOptions }) => {
         checkedTypes.splice(itemID, 1);
       }
     }
+    return null;
   };
 
   const clearHandler = () => {
@@ -51,7 +53,7 @@ const Filter: React.FC<Props> = ({ years, types, setFilterOptions }) => {
     setCheckedTypes([]);
   }
 
-
+console.log(checkedYears);
   return (
     <>
        {!filter ? <ToggleBtn onClick={clickHandler}>Filter</ToggleBtn> : null}

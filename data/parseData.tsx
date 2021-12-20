@@ -1,3 +1,5 @@
+
+// ensures that multiple markers do not fall on the exact same coordinate, if multiple people work in the same place.
 const floatChange = (floatArr: any[]) => {
     const final = [];
     for (let i = 0; i < floatArr.length; i++) {
@@ -9,7 +11,7 @@ const floatChange = (floatArr: any[]) => {
     return final;
 }
 
-
+// formats data correctly for the requirements set by the use-supercluster library. also ensures that numbers become number types, instead of strings
 const parseData = (data: any) => {
   return data.map((alum: any) => ({
       type: alum.type,
