@@ -52,9 +52,13 @@ interface Props {
   setPopup: Dispatch<any>
 }
 
+// renders clusters and individual map points, depending on zoom level
 const Markers: React.FC<Props> = ({ points, viewport, setViewport, mapRef, setPopup}) => {
-
+  // becomes basis for deciding between rendering a cluster or a marker
   const bounds = mapRef.current ? mapRef.current.getMap().getBounds().toArray().flat() : null;
+
+  // takes an array of data, and converts them to "clusters", which then have the ability to become "super clusters". sets
+  // sensitivity of border between cluster and marker.  zoom is the max zoom level at which a cluster will break apart.
   const { clusters, supercluster } = useSupercluster({
     points,
     zoom: viewport.zoom,
@@ -65,8 +69,11 @@ const Markers: React.FC<Props> = ({ points, viewport, setViewport, mapRef, setPo
   return (
     <>
       {clusters.map(cluster => {
+        // extracting data for better semantic use
         const [longitude, latitude] = cluster.geometry.coordinates;
         const {cluster: isCluster, point_count: pointCount} = cluster.properties;
+
+        // renders cluster if data meets the requirements
         if (isCluster) {
             return (
               <Marker key={cluster.id} latitude={latitude} longitude={longitude}>
@@ -89,6 +96,7 @@ const Markers: React.FC<Props> = ({ points, viewport, setViewport, mapRef, setPo
               </Marker>
             )
         } else {
+           // if zoomed in enough, a marker will be rendered instead of cluster
            return (
                <Marker key={uuidv4()} latitude={latitude} longitude={longitude} onClick={() => {setPopup(cluster)}}
                >
