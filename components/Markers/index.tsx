@@ -1,6 +1,6 @@
 import React, { Dispatch } from 'react';
 import { FlyToInterpolator, Marker } from 'react-map-gl';
-import { v4 as uuidv4 } from 'uuid';;
+import { v4 as uuidv4 } from 'uuid';
 import useSupercluster from 'use-supercluster';
 import { AlumniType } from '../../Interfaces';
 import { ClusterMain, MarkerMain } from './styled';
