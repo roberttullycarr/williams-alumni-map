@@ -4,6 +4,7 @@ import { useRef, useState } from 'react';
 import PopUp from './popup';
 import Markers from './Markers';
 import { AlumniType, FilterOptions } from '../Interfaces';
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 
 interface Props {
