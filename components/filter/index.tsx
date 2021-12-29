@@ -38,7 +38,6 @@ const Filter: React.FC<Props> = ({ years, types, setFilterOptions }) => {
   const yearHandler = () => {
     setAllYears(!allYears);
     allYears ? setCheckedYears([]) : setCheckedYears(years);
-    console.log(checkedYears);
   }
     const typeHandler = () => {
     setAllTypes(!allTypes);
