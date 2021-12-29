@@ -1,13 +1,14 @@
 import * as React from "react";
 import { ToggleBtn, FilterMain, FPUTitle, FilterPopUp, FPUMain, FPUSelectMain, CategoryContainer, FPUITitle, FPUInputsWrap, LabelMain, LineItem, FPUBtns, FilterButton, FPUITitleMain, AllBtn } from './styled';
-import { Dispatch, useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
+import { FilterOptions } from '../../Interfaces';
 
 
 interface Props {
   years: number[],
   types: string[],
-  setFilterOptions: Dispatch<any>,
-  filterOptions: any,
+  setFilterOptions: Dispatch<SetStateAction<FilterOptions>>,
+  filterOptions: FilterOptions,
 }
 
 const Filter: React.FC<Props> = ({ years, types, setFilterOptions }) => {
@@ -24,7 +25,7 @@ const Filter: React.FC<Props> = ({ years, types, setFilterOptions }) => {
     clickHandler();
   }
 
-  const changeHandler = (value: any) => {
+  const changeHandler = (value: string | number) => {
     if (typeof value === 'number'){
       let itemID = checkedYears.indexOf(value);
       itemID === -1 ? checkedYears.push(value) : checkedYears.splice(itemID, 1);
@@ -32,7 +33,6 @@ const Filter: React.FC<Props> = ({ years, types, setFilterOptions }) => {
       let itemID = checkedTypes.indexOf(value);
       itemID === -1 ? checkedTypes.push(value) : checkedTypes.splice(itemID, 1);
     }
-    return null;
   };
 
   const yearHandler = () => {

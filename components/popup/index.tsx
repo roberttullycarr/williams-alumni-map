@@ -5,7 +5,7 @@ import { PopupMain, Name, Year, JobMain, Employer, Title } from './styled';
 
 interface Props {
   popup: AlumniType,
-  setPopup: Dispatch<any>;
+  setPopup: Dispatch<React.SetStateAction<AlumniType | null>>;
 }
 
 // renders pop up component

@@ -20,7 +20,7 @@ const MapboxMap: React.FC<Props> = ({ alumniData, filterOptions }) => {
   const mapRef: any = useRef();
 
   // stores data of the alumni the user clicked on, so it can be displayed in the popup.
-  const [popup, setPopup] = useState<any>(null);
+  const [popup, setPopup] = useState<AlumniType | null>(null);
 
   // takes the raw data and filters it based on the filter options selected by user.
   const points = alumniData.filter(x => filterOptions.years.includes(parseFloat(x.properties.class)) && filterOptions.types.includes(x.properties.type));
