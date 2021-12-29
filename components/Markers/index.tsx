@@ -1,48 +1,9 @@
 import React, { Dispatch } from 'react';
 import { FlyToInterpolator, Marker } from 'react-map-gl';
 import { v4 as uuidv4 } from 'uuid';
-import styled from 'styled-components';
 import useSupercluster from 'use-supercluster';
-
-const MarkerMain = styled.div`
-  border: 1px solid ${props => props.color};
-  background-color: ${props => props.color};
-  border-radius: 50%;
-  width: 10px;
-  height: 10px;
-  cursor: pointer;
-`
-
-const ClusterMain = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid black;
-  background-color: black;
-  font-size: 12px;
-  color: white;
-  border-radius: 50%;
-  cursor: pointer;
-`
-
-interface Properties {
-  color: string,
-  name: string,
-  class: string,
-  employer: string,
-  type: string,
-  title: string,
-}
-
-interface Geometry {
-  coordinates: string[],
-  type: string,
-}
-
-type AlumniType = {
-  properties: Properties,
-  geometry: Geometry,
-}
+import { AlumniType } from '../../Interfaces';
+import { ClusterMain, MarkerMain } from './styled';
 
 interface Props {
   points: AlumniType[],
@@ -63,7 +24,7 @@ const Markers: React.FC<Props> = ({ points, viewport, setViewport, mapRef, setPo
     points,
     zoom: viewport.zoom,
     bounds,
-    options: {radius: 50, maxZoom: 15 }
+    options: {radius: 50, maxZoom: 12 }
   });
 
   return (

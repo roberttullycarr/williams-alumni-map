@@ -91,8 +91,28 @@ export const LineItem = styled.p`
 export const FPUITitle = styled.h1`
   font-size: 15px;
   width: 100%;
-  padding-left: 3%;
+  //padding-left: 3%;
   margin-bottom: 5px;
+`
+
+export const FPUITitleMain = styled.div`
+width: 95%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`
+
+export const AllBtn = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 18px;
+  height: 18px;
+  border: 1px solid black;
+  background-color: white;
+  color: black;
+  
+  cursor: pointer;
 `
 
 export const FPUBtns = styled.div`
