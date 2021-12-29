@@ -23,7 +23,6 @@ const GlobalStyle = createGlobalStyle`
   .mapboxgl-popup-close-button {
       margin-right: 8px;
       font-size: 20px;
-      border: 1px solid red;
         :hover {
         background: white !important;
       }
