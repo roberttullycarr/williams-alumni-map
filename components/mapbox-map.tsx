@@ -3,30 +3,7 @@ import ReactMapGL from 'react-map-gl';
 import { useRef, useState } from 'react';
 import PopUp from './popup';
 import Markers from './Markers';
-
-interface Properties {
-  color: string,
-  name: string,
-  class: string,
-  employer: string,
-  type: string,
-  title: string,
-}
-
-interface Geometry {
-  coordinates: string[],
-  type: string,
-}
-
-type AlumniType = {
-  properties: Properties,
-  geometry: Geometry,
-}
-
-interface FilterOptions {
-  years: number[],
-  types: string[]
-}
+import { AlumniType, FilterOptions } from '../Interfaces';
 
 
 interface Props {
@@ -46,7 +23,7 @@ const MapboxMap: React.FC<Props> = ({ alumniData, filterOptions }) => {
   const [popup, setPopup] = useState<any>(null);
 
   // takes the raw data and filters it based on the filter options selected by user.
-  const points = alumniData.filter(x => !filterOptions.years.includes(parseFloat(x.properties.class)) && !filterOptions.types.includes(x.properties.type));
+  const points = alumniData.filter(x => filterOptions.years.includes(parseFloat(x.properties.class)) && filterOptions.types.includes(x.properties.type));
 
   // an state hook that sets the initial lat, log and zoom settings for mapbox map, and then takes changes when user or program zooms in or out
   const [viewport, setViewport] = React.useState<object> ({

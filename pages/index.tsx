@@ -7,25 +7,7 @@ import { useState } from 'react';
 import genYears from '../data/years';
 import uniqueCategories from '../data/categories';
 import parseData from '../data/parseData';
-
-interface Properties {
-  color: string,
-  name: string,
-  class: string,
-  employer: string,
-  type: string,
-  title: string,
-}
-
-interface Geometry {
-  coordinates: string[],
-  type: string,
-}
-
-type AlumniType = {
-  properties: Properties,
-  geometry: Geometry,
-}
+import { AlumniType } from '../Interfaces';
 
 interface Props {
   alumniData: AlumniType[];
@@ -39,8 +21,7 @@ const Home: NextPage<Props> = ({alumniData}) => {
   // reduces categories listed in data to only unique ones.  this can be taken out when we have a set number of categories
   const types: string[] = uniqueCategories(alumniData);
   // lists the years and industries that will be filtered from the map display.   passed down to both the filter and mapbox-map components
-  const [filterOptions, setFilterOptions] = useState<any>({years: [], types: []});
-
+  const [filterOptions, setFilterOptions] = useState<any>({years: years, types: types});
 
   // head component in return adds our font to the next.js index.html head
   return (

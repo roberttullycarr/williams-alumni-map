@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ToggleBtn, FilterMain, FPUTitle, FilterPopUp, FPUMain, FPUSelectMain, CategoryContainer, FPUITitle, FPUInputsWrap, LabelMain, LineItem, FPUBtns, FilterButton } from './styled';
+import { ToggleBtn, FilterMain, FPUTitle, FilterPopUp, FPUMain, FPUSelectMain, CategoryContainer, FPUITitle, FPUInputsWrap, LabelMain, LineItem, FPUBtns, FilterButton, FPUITitleMain, AllBtn } from './styled';
 import { Dispatch, useState } from 'react';
 
 
@@ -12,8 +12,10 @@ interface Props {
 
 const Filter: React.FC<Props> = ({ years, types, setFilterOptions }) => {
   const [filter, setFilter] = useState<boolean>(false);
-  const [checkedYears, setCheckedYears] = useState<number[]>([]);
-  const [checkedTypes, setCheckedTypes] = useState<string[]>([]);
+  const [checkedYears, setCheckedYears] = useState<number[]>(years);
+  const [checkedTypes, setCheckedTypes] = useState<string[]>(types);
+  const [allYears, setAllYears] = useState<boolean>(true);
+  const [allTypes, setAllTypes] = useState<boolean>(true);
 
   const clickHandler = () => !filter ? setFilter(true) : setFilter(false);
 
@@ -22,35 +24,25 @@ const Filter: React.FC<Props> = ({ years, types, setFilterOptions }) => {
     clickHandler();
   }
 
-  const changeHandler = (e: any, value: any) => {
+  const changeHandler = (value: any) => {
     if (typeof value === 'number'){
       let itemID = checkedYears.indexOf(value);
-      if (itemID === -1){
-        checkedYears.push(value)
-      } else {
-        checkedYears.splice(itemID, 1);
-      }
-      console.log(checkedYears);
+      itemID === -1 ? checkedYears.push(value) : checkedYears.splice(itemID, 1);
     } else {
       let itemID = checkedTypes.indexOf(value);
-      if (itemID === -1){
-        checkedTypes.push(value)
-      } else {
-        checkedTypes.splice(itemID, 1);
-      }
+      itemID === -1 ? checkedTypes.push(value) : checkedTypes.splice(itemID, 1);
     }
     return null;
   };
 
-  const clearHandler = () => {
-    console.log(years);
-    setCheckedYears(years);
-    setCheckedTypes(types);
+  const yearHandler = () => {
+    setAllYears(!allYears);
+    allYears ? setCheckedYears([]) : setCheckedYears(years);
+    console.log(checkedYears);
   }
-
-    const selectAllHandler = () => {
-    setCheckedYears([]);
-    setCheckedTypes([]);
+    const typeHandler = () => {
+    setAllTypes(!allTypes);
+    allTypes ? setCheckedTypes([]) : setCheckedTypes(types);
   }
 
   return (
@@ -64,13 +56,16 @@ const Filter: React.FC<Props> = ({ years, types, setFilterOptions }) => {
         <FPUMain>
           <FPUSelectMain>
             <CategoryContainer>
-              <FPUITitle>GRADUATION YEAR</FPUITitle>
+              <FPUITitleMain>
+                <FPUITitle>GRADUATION YEAR</FPUITitle>
+                 <AllBtn onClick={yearHandler}>{checkedYears.length === years.length ? "✔︎" : ''}</AllBtn>
+              </FPUITitleMain>
               <FPUInputsWrap>
                 {years.map((year) =>
                       <LabelMain key={Math.random()}>
                         <input key={Math.random()} type='checkbox' placeholder='years' value={year}
-                               defaultChecked={!checkedYears.includes(year)}
-                               onChange={(e) => changeHandler(e, year)}
+                               defaultChecked={checkedYears.includes(year)}
+                               onChange={() => changeHandler(year)}
                         />
                         <LineItem>{year}</LineItem>
                       </LabelMain>
@@ -79,13 +74,16 @@ const Filter: React.FC<Props> = ({ years, types, setFilterOptions }) => {
               </FPUInputsWrap>
             </CategoryContainer>
             <CategoryContainer>
-              <FPUITitle>INDUSTRY</FPUITitle>
+              <FPUITitleMain>
+                <FPUITitle>INDUSTRY</FPUITitle>
+                <AllBtn onClick={typeHandler}>{checkedTypes.length === types.length ? "✔︎" : ""}</AllBtn>
+              </FPUITitleMain>
               <FPUInputsWrap>
                 {types.map((type) =>
                 <LabelMain key={Math.random()}>
                   <input key={Math.random()} type='checkbox' placeholder='industry' value={type}
-                         onChange={(e) => changeHandler(e, type)}
-                         defaultChecked={!checkedTypes.includes(type)}
+                         onChange={() => changeHandler(type)}
+                         defaultChecked={checkedTypes.includes(type)}
                   />
                   <LineItem>{type}</LineItem>
                 </LabelMain>
@@ -94,8 +92,6 @@ const Filter: React.FC<Props> = ({ years, types, setFilterOptions }) => {
             </CategoryContainer>
           </FPUSelectMain>
           <FPUBtns>
-            <FilterButton onClick={clearHandler}>CLEAR ALL</FilterButton>
-            <FilterButton onClick={selectAllHandler}>SELECT ALL</FilterButton>
             <FilterButton onClick={submitHandler}>SAVE</FilterButton>
           </FPUBtns>
         </FPUMain>
