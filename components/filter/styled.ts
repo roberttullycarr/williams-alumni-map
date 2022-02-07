@@ -1,15 +1,20 @@
 import styled from 'styled-components';
 
+interface myProps {
+  filter: boolean,
+}
+
 export const FilterMain = styled.div`
   position: absolute;
+  visibility: ${(p: myProps) => p.filter ? "visible" : 'hidden'};
+  opacity: ${(p: myProps) => p.filter ? '50%' : '0'};
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background: grey;
-  opacity: 50%;
   cursor: pointer;
-  
+  transition: opacity 0.3s ease;
   :hover {
     cursor: pointer;
   }
@@ -17,8 +22,10 @@ export const FilterMain = styled.div`
 `
 
 export const FilterPopUp = styled.div`
-position: absolute;
+  position: absolute;
   display: flex;
+  visibility: ${(p: myProps) => p.filter ? "visible" : 'hidden'};
+  opacity: ${(p: myProps) => p.filter ? '1' : "0"};
   flex-direction: column;
   z-index: 999999;
   width: 60%;
@@ -29,7 +36,7 @@ position: absolute;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
   padding: 2.5% 3%;
-  
+  transition: opacity 0.3s ease;
     @media only screen and (max-width: 400px) {
   width: 100%;
   }

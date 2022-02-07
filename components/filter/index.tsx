@@ -18,7 +18,7 @@ const Filter: React.FC<Props> = ({ years, types, setFilterOptions }) => {
   const [allYears, setAllYears] = useState<boolean>(true);
   const [allTypes, setAllTypes] = useState<boolean>(true);
 
-  const clickHandler = () => !filter ? setFilter(true) : setFilter(false);
+  const clickHandler = () => setFilter(!filter);
 
   const submitHandler = () => {
     setFilterOptions({years: checkedYears, types: checkedTypes});
@@ -47,10 +47,9 @@ const Filter: React.FC<Props> = ({ years, types, setFilterOptions }) => {
   return (
     <>
        {!filter ? <ToggleBtn onClick={clickHandler}>Filter</ToggleBtn> : null}
-      {filter ?
       <>
-      <FilterMain onClick={clickHandler}/>
-      <FilterPopUp>
+      <FilterMain onClick={clickHandler} filter={filter}/>
+      <FilterPopUp filter={filter}>
         <FPUTitle>FILTER ALUMNI</FPUTitle>
         <FPUMain>
           <FPUSelectMain>
@@ -96,7 +95,6 @@ const Filter: React.FC<Props> = ({ years, types, setFilterOptions }) => {
         </FPUMain>
       </FilterPopUp>
       </>
-        : null}
     </>
   )
 }
