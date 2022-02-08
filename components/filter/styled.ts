@@ -41,7 +41,7 @@ export const FilterPopUp = styled.div`
   transform: translateX(-50%) translateY(-50%);
   padding: 2.5% 3%;
   transition: opacity 0.3s ease;
-    @media only screen and (max-width: 32rem) {
+    @media all and (max-width: 32rem) {
   width: 100%;
   }
 `
