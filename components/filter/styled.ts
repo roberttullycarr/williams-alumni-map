@@ -1,13 +1,17 @@
 import styled from 'styled-components';
 
-interface myProps {
-  filter: boolean,
+interface mainProps {
+  alumniFilter: any,
+}
+
+interface popupProps {
+  alumniPopupFilter: any,
 }
 
 export const FilterMain = styled.div`
   position: absolute;
-  visibility: ${(p: myProps) => p.filter ? "visible" : 'hidden'};
-  opacity: ${(p: myProps) => p.filter ? '50%' : '0'};
+  visibility: ${(p: mainProps) => p.alumniFilter ? "visible" : 'hidden'};
+  opacity: ${(p: mainProps) => p.alumniFilter ? '50%' : '0'};
   top: 0;
   left: 0;
   width: 100%;
@@ -24,8 +28,8 @@ export const FilterMain = styled.div`
 export const FilterPopUp = styled.div`
   position: absolute;
   display: flex;
-  visibility: ${(p: myProps) => p.filter ? "visible" : 'hidden'};
-  opacity: ${(p: myProps) => p.filter ? '1' : "0"};
+  visibility: ${(p: popupProps) => p.alumniPopupFilter ? "visible" : 'hidden'};
+  opacity: ${(p: popupProps) => p.alumniPopupFilter ? '1' : "0"};
   flex-direction: column;
   z-index: 999999;
   width: 60%;
@@ -37,7 +41,7 @@ export const FilterPopUp = styled.div`
   transform: translateX(-50%) translateY(-50%);
   padding: 2.5% 3%;
   transition: opacity 0.3s ease;
-    @media only screen and (max-width: 400px) {
+    @media all and (max-width: 32rem) {
   width: 100%;
   }
 `
