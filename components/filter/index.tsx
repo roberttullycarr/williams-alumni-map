@@ -12,13 +12,13 @@ interface Props {
 }
 
 const Filter: React.FC<Props> = ({ years, types, setFilterOptions }) => {
-  const [filter, setFilter] = useState<boolean>(false);
+  const [alumniFilter, setAlumniFilter] = useState<any>(false);
   const [checkedYears, setCheckedYears] = useState<number[]>(years);
   const [checkedTypes, setCheckedTypes] = useState<string[]>(types);
   const [allYears, setAllYears] = useState<boolean>(true);
   const [allTypes, setAllTypes] = useState<boolean>(true);
 
-  const clickHandler = () => setFilter(!filter);
+  const clickHandler = () => alumniFilter === true ? setAlumniFilter(false) : setAlumniFilter(true);
 
   const submitHandler = () => {
     setFilterOptions({years: checkedYears, types: checkedTypes});
@@ -46,10 +46,10 @@ const Filter: React.FC<Props> = ({ years, types, setFilterOptions }) => {
 
   return (
     <>
-       {!filter ? <ToggleBtn onClick={clickHandler}>Filter</ToggleBtn> : null}
+       {!alumniFilter? <ToggleBtn onClick={clickHandler}>{'Filter'}</ToggleBtn> : null}
       <>
-      <FilterMain onClick={clickHandler} filter={filter}/>
-      <FilterPopUp filter={filter}>
+      <FilterMain onClick={() => clickHandler} alumniFilter={alumniFilter}/>
+      <FilterPopUp alumniPopupFilter={alumniFilter}>
         <FPUTitle>FILTER ALUMNI</FPUTitle>
         <FPUMain>
           <FPUSelectMain>
