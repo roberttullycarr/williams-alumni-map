@@ -15,7 +15,7 @@ const GlobalStyle = createGlobalStyle`
   
   .navigation-control {
     right: 0 !important;
-    margin: 2rem 2rem;
+    margin: 1.5rem 1.5rem;
 }
   
   .mapboxgl-popup-content {
