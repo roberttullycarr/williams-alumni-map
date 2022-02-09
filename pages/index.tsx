@@ -40,7 +40,7 @@ const Home: NextPage<Props> = ({alumniData}) => {
 
 export default Home
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const alumni = await getAlumniData();
   const alumniData = parseData(alumni);
 

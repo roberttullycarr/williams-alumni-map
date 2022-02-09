@@ -46,9 +46,9 @@ const Filter: React.FC<Props> = ({ years, types, setFilterOptions }) => {
 
   return (
     <>
-       {!alumniFilter? <ToggleBtn onClick={clickHandler}>{'Filter'}</ToggleBtn> : null}
+       {!alumniFilter? <ToggleBtn onClick={() => clickHandler()}>{'Filter'}</ToggleBtn> : null}
       <>
-      <FilterMain onClick={() => clickHandler} alumniFilter={alumniFilter}/>
+      <FilterMain onClick={() => clickHandler()} alumniFilter={alumniFilter}/>
       <FilterPopUp alumniPopupFilter={alumniFilter}>
         <FPUTitle>FILTER ALUMNI</FPUTitle>
         <FPUMain>

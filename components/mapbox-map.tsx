@@ -1,5 +1,5 @@
 import * as React from "react";
-import ReactMapGL from 'react-map-gl';
+import ReactMapGL, { NavigationControl } from 'react-map-gl';
 import { useRef, useState } from 'react';
 import PopUp from './popup';
 import Markers from './Markers';
@@ -41,6 +41,7 @@ const MapboxMap: React.FC<Props> = ({ alumniData, filterOptions }) => {
       mapboxApiAccessToken={accessToken}
       ref={mapRef}
     >
+      <NavigationControl className={'navigation-control'}/>
       <Markers points={points} viewport={viewport} setViewport={setViewport} mapRef={mapRef} setPopup={setPopup}/>
       {popup && <PopUp popup={popup} setPopup={setPopup} />}
     </ReactMapGL>
