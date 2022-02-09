@@ -41,8 +41,13 @@ export const FilterPopUp = styled.div`
   transform: translateX(-50%) translateY(-50%);
   padding: 2.5% 3%;
   transition: opacity 0.3s ease;
-    @media all and (max-width: 32rem) {
+  
+  @media all and (max-width: 32rem) {
   width: 100%;
+  }
+  
+  @media all and (max-height: 32rem) {  
+  height: 100%;
   }
 `
 
@@ -154,8 +159,8 @@ export const FilterButton = styled.button`
 
 export const ToggleBtn = styled.button`
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 1.5rem;
+  left: 1.5rem;
   z-index: 1000000;
   width: 80px;
   height: 30px;

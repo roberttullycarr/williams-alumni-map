@@ -13,6 +13,11 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
   }
   
+  .navigation-control {
+    right: 0 !important;
+    margin: 2rem 2rem;
+}
+  
   .mapboxgl-popup-content {
       border: 1px solid black;
       padding: 0;
@@ -27,6 +32,8 @@ const GlobalStyle = createGlobalStyle`
         background: white !important;
       }
     }
+  
+  .m
   
   body {
     margin: 0;
