@@ -16,6 +16,7 @@ interface Props {
 
 // main page component of project. data comes from './api/api.js'
 const Home: NextPage<Props> = ({alumniData}) => {
+  //hello
   // generates list of years between 1974 and current year, for use when creating filter checkboxes, as well as for filtering years.
   const years: number[] = genYears(1974);
   // reduces categories listed in data to only unique ones.  this can be taken out when we have a set number of categories
