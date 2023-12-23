@@ -12,13 +12,11 @@ interface Props {
 const PopUp: React.FC<Props> = ({ popup, setPopup }) => {
   return (
       <Popup
-        tipSize={5}
-        offsetLeft={6}
-        offsetTop={6}
+        offset={6}
         longitude={parseFloat(popup.geometry.coordinates[0])}
         latitude={parseFloat(popup.geometry.coordinates[1])}
         closeOnClick={false}
-        onClose={setPopup}
+        onClose={() => setPopup(null)}
       >
         <PopupMain>
           <Name>{popup.properties.name}</Name>

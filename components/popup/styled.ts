@@ -1,9 +1,10 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 
 export const PopupMain = styled.div`
-padding: 7px 28px 7px 20px;
+padding: 2rem 3rem 2rem 2rem;
   display: flex;
   flex-direction: column;
+  min-width: 250px;
 `
 
 export const Name = styled.p`

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ToggleBtn, FilterMain, FPUTitle, FilterPopUp, FPUMain, FPUSelectMain, CategoryContainer, FPUITitle, FPUInputsWrap, LabelMain, LineItem, FPUBtns, FilterButton, FPUITitleMain, AllBtn } from './styled';
 import { Dispatch, SetStateAction, useState } from 'react';
-import { FilterOptions } from '../../Interfaces';
+import { FilterOptions, ITypes } from '../../Interfaces';
 
 
 interface Props {
@@ -12,7 +12,7 @@ interface Props {
 }
 
 const Filter: React.FC<Props> = ({ years, types, setFilterOptions }) => {
-  const [alumniFilter, setAlumniFilter] = useState<any>(false);
+  const [alumniFilter, setAlumniFilter] = useState<boolean>(false);
   const [checkedYears, setCheckedYears] = useState<number[]>(years);
   const [checkedTypes, setCheckedTypes] = useState<string[]>(types);
   const [allYears, setAllYears] = useState<boolean>(true);
@@ -48,8 +48,8 @@ const Filter: React.FC<Props> = ({ years, types, setFilterOptions }) => {
     <>
        {!alumniFilter? <ToggleBtn onClick={() => clickHandler()}>{'Filter'}</ToggleBtn> : null}
       <>
-      <FilterMain onClick={() => clickHandler()} alumniFilter={alumniFilter}/>
-      <FilterPopUp alumniPopupFilter={alumniFilter}>
+      <FilterMain onClick={() => clickHandler()} alumnifilter={`${alumniFilter}`}/>
+      <FilterPopUp alumnipopupfilter={`${alumniFilter}`}>
         <FPUTitle>FILTER ALUMNI</FPUTitle>
         <FPUMain>
           <FPUSelectMain>

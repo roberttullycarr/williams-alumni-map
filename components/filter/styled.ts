@@ -1,17 +1,17 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 
 interface mainProps {
-  alumniFilter: any,
+  alumnifilter: string,
 }
 
 interface popupProps {
-  alumniPopupFilter: any,
+  alumnipopupfilter: string,
 }
 
-export const FilterMain = styled.div`
+export const FilterMain = styled.div<mainProps>`
   position: absolute;
-  visibility: ${(p: mainProps) => p.alumniFilter ? "visible" : 'hidden'};
-  opacity: ${(p: mainProps) => p.alumniFilter ? '50%' : '0'};
+  visibility: ${(p) => p.alumnifilter === "true" ? "visible" : 'hidden'};
+  opacity: ${(p) => p.alumnifilter === "true" ? '50%' : '0'};
   top: 0;
   left: 0;
   width: 100vw;
@@ -25,11 +25,11 @@ export const FilterMain = styled.div`
   
 `
 
-export const FilterPopUp = styled.div`
+export const FilterPopUp = styled.div<popupProps>`
   position: absolute;
   display: flex;
-  visibility: ${(p: popupProps) => p.alumniPopupFilter ? "visible" : 'hidden'};
-  opacity: ${(p: popupProps) => p.alumniPopupFilter ? '1' : "0"};
+  visibility: ${(p) => p.alumnipopupfilter === "true" ? "visible" : 'hidden'};
+  opacity: ${(p) => p.alumnipopupfilter === "true" ? '1' : "0"};
   flex-direction: column;
   z-index: 999999;
   width: 60%;

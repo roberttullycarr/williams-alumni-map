@@ -1,5 +1,5 @@
 
-const uniqueCategories = (data: any) => {
+export const uniqueCategories = (data: any) => {
   let categories: any[] = [];
   for (let i = 0; i <= data.length; i++) {
     let cat: any = data[i]?.properties.type;
@@ -10,4 +10,25 @@ const uniqueCategories = (data: any) => {
   return categories.sort();
 }
 
-export default uniqueCategories
+// const uniqueArray = (objects:any, uniqueBy: any, keepFirst = true) => {
+//   return Array.from(
+//       objects.reduce((map:any, e: any) => {
+//           let key = uniqueBy.map((key:any) => [e[key], typeof e[key]]).flat().join('-')
+//           if (keepFirst && map.has(key)) return map
+//           return map.set(key, e)
+//       }, new Map()).values()
+//   )
+// }
+
+// const uniqueCategories = (data: any) => {
+//   const allCategories = data.map((item: any) => {
+//     return {
+//       category: item.properties.type,
+//       color: item.properties.color
+//     }
+//   }).filter((x:any) => x.color !== "" || x.category !== "");
+
+//   return uniqueArray(allCategories, ["category", 'color'])
+// }
+
+

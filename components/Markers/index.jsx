@@ -1,20 +1,12 @@
-import React, { Dispatch } from 'react';
-import { FlyToInterpolator, Marker } from 'react-map-gl';
+import React, { Dispatch, useEffect } from 'react';
+import FlyToInterpolator, { Marker } from 'react-map-gl';
 import { v4 as uuidv4 } from 'uuid';
 import useSupercluster from 'use-supercluster';
 import { AlumniType } from '../../Interfaces';
 import { ClusterMain, MarkerMain } from './styled';
 
-interface Props {
-  points: AlumniType[],
-  viewport: any,
-  setViewport: Dispatch<any>,
-  mapRef: any,
-  setPopup: Dispatch<any>
-}
-
 // renders clusters and individual map points, depending on zoom level
-const Markers: React.FC<Props> = ({ points, viewport, setViewport, mapRef, setPopup}) => {
+const Markers = ({ points, viewport, setViewport, flyToPoint, mapRef, setPopup}) => {
   // becomes basis for deciding between rendering a cluster or a marker
   const bounds = mapRef.current ? mapRef.current.getMap().getBounds().toArray().flat() : null;
 
@@ -33,7 +25,6 @@ const Markers: React.FC<Props> = ({ points, viewport, setViewport, mapRef, setPo
         // extracting data for better semantic use
         const [longitude, latitude] = cluster.geometry.coordinates;
         const {cluster: isCluster, point_count: pointCount} = cluster.properties;
-
         // renders cluster if data meets the requirements
         if (isCluster) {
             return (
@@ -44,14 +35,8 @@ const Markers: React.FC<Props> = ({ points, viewport, setViewport, mapRef, setPo
                 }}
                              onClick={() => {
                                const expansionZoom = Math.min(supercluster.getClusterExpansionZoom(cluster.id), 20);
-                               setViewport({
-                                 ...viewport,
-                                 latitude,
-                                 longitude,
-                                 zoom: expansionZoom,
-                                 transitionInterpolator: new FlyToInterpolator({ speed: 2 }),
-                                 transitionDuration: "auto"
-                               })
+                               console.log('latitude, longitude :>> ', latitude, longitude);
+                               flyToPoint(longitude, latitude, expansionZoom)
                              }}
                 >{pointCount}</ClusterMain>
               </Marker>
@@ -70,4 +55,4 @@ const Markers: React.FC<Props> = ({ points, viewport, setViewport, mapRef, setPo
   )
 }
 
-export default Markers
+export default Markers;

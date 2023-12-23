@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 
 export const MarkerMain = styled.div`
   border: 1px solid ${props => props.color};

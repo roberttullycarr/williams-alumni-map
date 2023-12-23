@@ -17,8 +17,13 @@ export type AlumniType = {
   geometry: Geometry,
 }
 
+export interface ITypes {
+  category: string; 
+  color: string;
+}
+
 export interface FilterOptions {
-  years: number[],
-  types: string[]
+  years: number[];
+  types: string[];
 }
 
