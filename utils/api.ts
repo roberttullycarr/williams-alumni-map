@@ -51,11 +51,10 @@ export const getAlumniData = async () =>{
     }
     });
     console.log("stringifying data")
+
     const alumniJSON = JSON.parse(JSON.stringify(alumni));
-    // console.log('alumniJSON[25].geometry.coordinates :>> ', alumniJSON[25].geometry.coordinates);
     console.log("filtering out unfinished data points")
     const finalData = alumniJSON.filter((point: any) => point.geometry.coordinates[0] !== null  || undefined || '')
-    // console.log('finalData :>> ', finalData);
     return finalData;
   } catch (error) {
     //   log any errors to the console

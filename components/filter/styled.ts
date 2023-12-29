@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import Filter from '.';
 
 interface mainProps {
   alumnifilter: string,
