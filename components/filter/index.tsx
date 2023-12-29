@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ToggleBtn, FilterMain, FPUTitle, FilterPopUp, FPUMain, FPUSelectMain, CategoryContainer, FPUITitle, FPUInputsWrap, LabelMain, LineItem, FPUBtns, FilterButton, FPUITitleMain, AllBtn } from './styled';
+import { ToggleBtn, FilterMain, FPUTitle, FilterPopUp, FPUMain, FPUSelectMain, CategoryContainer, FPUITitle, FPUInputsWrap, LabelMain, LineItem, FPUBtns, FilterButton, FPUITitleMain, AllBtn, FilterCancelButton } from './styled';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { FilterOptions, ICategories } from '../../Interfaces';
 import { MarkerMain } from "../Markers/styled";
@@ -102,6 +102,7 @@ const Filter = ({ years, categoryNames, categories, setFilterOptions }: IFilterP
           </FPUSelectMain>
           <FPUBtns>
             <FilterButton onClick={submitHandler}>SAVE</FilterButton>
+            <FilterCancelButton onClick={clickHandler}>CANCEL</FilterCancelButton>
           </FPUBtns>
         </FPUMain>
       </FilterPopUp>

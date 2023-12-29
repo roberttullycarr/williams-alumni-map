@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import Filter from '.';
 
 interface mainProps {
   alumnifilter: string,
@@ -82,7 +83,7 @@ export const CategoryContainer = styled.div`
   @media all and (max-width: 600px){
     width: 100%;
     height: 50%;
-    /* padding-bottom: 1rem; */
+    padding-bottom: 1rem;
   }
 `
 
@@ -163,6 +164,16 @@ export const FilterButton = styled.button`
     background-color: white;
     color: black;
   }
+`
+
+export const FilterCancelButton = styled(FilterButton)`
+background-color: white;
+color: black;
+
+:hover {
+  background-color: black;
+  color: white;
+}
 `
 
 export const ToggleBtn = styled.button`

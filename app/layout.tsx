@@ -1,5 +1,9 @@
-import Head from "next/head"
+import { Metadata } from "next"
 import React from "react"
+
+export const metadata: Metadata = {
+  title: "Alumni Map",
+}
 
 export default function RootLayout({
   // Layouts must accept a children prop.
@@ -10,9 +14,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <Head>
-        <title>Alumni Map</title>
-      </Head>
       <body>{children}</body>
     </html>
   )

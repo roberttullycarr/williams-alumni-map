@@ -1,10 +1,15 @@
 import styled from '@emotion/styled';
 
 export const PopupMain = styled.div`
-  padding: 2rem 3rem 2rem 2rem;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
+  width: 100%;
   flex: 1;
+
+  .mapboxgl-popup-close-button{
+    outline: none !important;
+  }
 `
 
 export const Name = styled.p`
