@@ -1,12 +1,11 @@
-import React, { Dispatch, useEffect } from 'react';
-import FlyToInterpolator, { Marker } from 'react-map-gl';
+import React from 'react';
+import { Marker } from 'react-map-gl';
 import { v4 as uuidv4 } from 'uuid';
 import useSupercluster from 'use-supercluster';
-import { AlumniType } from '../../Interfaces';
 import { ClusterMain, MarkerMain } from './styled';
 
 // renders clusters and individual map points, depending on zoom level
-const Markers = ({ points, viewport, setViewport, flyToPoint, mapRef, setPopup}) => {
+const Markers = ({ points, viewport, flyToPoint, mapRef, setPopup}) => {
   // becomes basis for deciding between rendering a cluster or a marker
   const bounds = mapRef.current ? mapRef.current.getMap().getBounds().toArray().flat() : null;
 
@@ -35,7 +34,6 @@ const Markers = ({ points, viewport, setViewport, flyToPoint, mapRef, setPopup})
                 }}
                              onClick={() => {
                                const expansionZoom = Math.min(supercluster.getClusterExpansionZoom(cluster.id), 20);
-                               console.log('latitude, longitude :>> ', latitude, longitude);
                                flyToPoint(longitude, latitude, expansionZoom)
                              }}
                 >{pointCount}</ClusterMain>

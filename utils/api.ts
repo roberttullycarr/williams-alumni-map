@@ -22,12 +22,13 @@ export const getAlumniData = async () =>{
     // google sheets
 
     const doc = new GoogleSpreadsheet(`${process.env.NEXT_PUBLIC_SPREADSHEET_ID}`, serviceAccountAuth);
- 
+    console.log("getting data from sheet")
     await doc.loadInfo(); // loads document properties and worksheets
     const sheet = doc.sheetsByIndex[0]; // or use doc.sheetsById[id] -- get first sheet in the document
 
     const rows = await sheet.getRows(); // return the rows from the 1st sheet
     // this returns the videos
+    console.log("extracting row data")
     const alumni = rows.map((row: any) => {
       // return the data for each video (or whatever each row is in your sheet)
     if (row !== null) {
@@ -49,8 +50,10 @@ export const getAlumniData = async () =>{
       };
     }
     });
+    console.log("stringifying data")
     const alumniJSON = JSON.parse(JSON.stringify(alumni));
     // console.log('alumniJSON[25].geometry.coordinates :>> ', alumniJSON[25].geometry.coordinates);
+    console.log("filtering out unfinished data points")
     const finalData = alumniJSON.filter((point: any) => point.geometry.coordinates[0] !== null  || undefined || '')
     // console.log('finalData :>> ', finalData);
     return finalData;

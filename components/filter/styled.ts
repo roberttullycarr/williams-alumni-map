@@ -66,7 +66,10 @@ export const FPUSelectMain = styled.div`
   display: flex;
   width: 100%;
   height: 85%;
-  //border: 1px solid green;
+
+  @media all and (max-width: 600px){
+    flex-direction: column;
+  }
 `
 
 export const CategoryContainer = styled.div`
@@ -75,7 +78,12 @@ export const CategoryContainer = styled.div`
   align-items: center;
   width: 50%;
   height: 100%;
-  //border: 1px solid purple;
+  
+  @media all and (max-width: 600px){
+    width: 100%;
+    height: 50%;
+    /* padding-bottom: 1rem; */
+  }
 `
 
 export const FPUInputsWrap = styled.div`
@@ -90,9 +98,9 @@ export const FPUInputsWrap = styled.div`
 `
 
 export const LabelMain = styled.label`
-display: flex;
+  display: flex;
   width: 100%;
-  //border: 1px solid red;
+  gap: 1rem;
   height: 30px;
   align-items: center;
   margin-bottom: 5px;

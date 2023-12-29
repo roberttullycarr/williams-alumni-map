@@ -1,15 +1,16 @@
 import styled from '@emotion/styled';
 
 export const PopupMain = styled.div`
-padding: 2rem 3rem 2rem 2rem;
+  padding: 2rem 3rem 2rem 2rem;
   display: flex;
   flex-direction: column;
-  min-width: 250px;
+  flex: 1;
 `
 
 export const Name = styled.p`
 font-weight: bold;
   font-size: 20px;
+  margin-bottom: .5rem;
 `
 
 export const Year = styled.p`
